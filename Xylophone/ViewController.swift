@@ -12,7 +12,8 @@ import AVFoundation
 class ViewController: UIViewController {
     
     var player: AVAudioPlayer!
-
+    var button: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -20,7 +21,25 @@ class ViewController: UIViewController {
     @IBAction func keyPressed(_ sender: UIButton) {
         //print(sender.titleLabel?.text!)
         //print(sender.currentTitle)
+        
+        print("Start")
         playSound(soundName: String(sender.currentTitle!))
+        
+        self.button = sender
+        UIView.animate(withDuration: 0.2,
+        animations: {
+            self.button.alpha = 0.2
+            
+        },
+        completion: { _ in
+            UIView.animate(withDuration: 0.2) {
+                self.button.alpha = 1
+            }
+        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            print("End")
+        }
+
     }
     
     func playSound(soundName: String) {
@@ -29,5 +48,6 @@ class ViewController: UIViewController {
         player.play()
                 
     }
+    
+    
 }
-
