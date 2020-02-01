@@ -26,19 +26,20 @@ class ViewController: UIViewController {
         playSound(soundName: String(sender.currentTitle!))
         
         self.button = sender
-        UIView.animate(withDuration: 0.2,
+        UIView.animate(withDuration: 0,
         animations: {
-            self.button.alpha = 0.2
+            self.button.alpha = 0.5
             
         },
         completion: { _ in
             UIView.animate(withDuration: 0.2) {
                 self.button.alpha = 1
+                print("End")
             }
         })
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            print("End")
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+//            
+//        }
 
     }
     
